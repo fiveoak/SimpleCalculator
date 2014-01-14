@@ -78,6 +78,8 @@ public class ButtonsPanel {
             calculatorDigitButtons[i] = new JButton();
             calculatorDigitButtons[i].setText(Integer.toString(i));
         }
+
+        //this is really horrible and temporary trying to get things lined up
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
