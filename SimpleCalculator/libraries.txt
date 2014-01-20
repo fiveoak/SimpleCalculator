@@ -1,0 +1,4 @@
+Libraries and licenses used:
+
+log4j: Apache License V2.0
+JEval: Apache License V2.0
