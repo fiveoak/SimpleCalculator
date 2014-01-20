@@ -1,7 +1,6 @@
 package com.github.fiveoak;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -12,6 +11,11 @@ import javax.swing.JTextPane;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Contains the calculator's view (in Swing) and view setup.
+ * @author fiveoak
+ *
+ */
 public class CalculatorView {
 
     /**
@@ -26,33 +30,109 @@ public class CalculatorView {
      */
     private JTextPane expressionTextPane;
 
+    /**
+     * Represents the entire outer frame of the GUI.
+     * Holds the outerPanel immediately inside.
+     */
     private JFrame outerFrame;
+
+    /**
+     * Takes up the entirety of the outerFrame. Contains the topPanel and
+     * bottomPanel.
+     */
     private JPanel outerPanel;
+
+    /**
+     * Contains the JTextPane showing the current input arithmetic expression.
+     */
     private JPanel topPanel;
+
+    /**
+     * Contains all of the digit and function buttons controlling the
+     * calculator.
+     */
     private JPanel bottomPanel;
 
     /**
-     * Order of buttons: {0, 1, 2, 3, 4, 5, 6, 7, 8}
+     * Order of buttons: {0, 1, 2, 3, 4, 5, 6, 7, 8}.
      */
     private JButton[] calculatorDigitButtons;
 
     /**
-     * Order of buttons: {'/', '*', '-', '.', '=', '+', '(', ')', CLR}
+     * Order of buttons: {'/', '*', '-', '.', '=', '+', '(', ')', CLR}.
      */
     private JButton[] calculatorFunctionButtons;
+
+    /**
+     * Number of digit buttons.
+     */
     private static final int NUM_DIGIT_BUTTONS = 10;
+
+    /**
+     * Number of function buttons.
+     */
     private static final int NUM_FUNCTION_BUTTONS = 9;
+
+    /**
+     * Button representing the period (decimal point) in an input arithmetic
+     * expression.
+     */
     private JButton periodButton;
+
+    /**
+     * Button representing the equal sign which computes the current input
+     * arithmetic expression.
+     */
     private JButton equalsButton;
+
+    /**
+     * Button representing the division sign (/) in an input arithmetic
+     * expression.
+     */
     private JButton divButton;
+
+    /**
+     * Button representing the multiplication sign (*) in an input arithmetic
+     * expression.
+     */
     private JButton multButton;
+
+    /**
+     * Button representing the plus sign (+) in an input arithmetic expression.
+     */
     private JButton addButton;
+
+    /**
+     * Button representing the minus sign (-) in an input arithmetic expression.
+     */
     private JButton subButton;
+
+    /**
+     * Button representing the left parenthesis '(' in an input arithmetic
+     * expression.
+     */
     private JButton leftParensButton;
+
+    /**
+     * Button representing the right parenthesis ')' in an input arithmetic
+     * expression.
+     */
     private JButton rightParensButton;
+
+    /**
+     * Button representing the "CLR" button which clears the currently entered
+     * arithmetic expression.
+     */
     private JButton clearButton;
 
+    /**
+     * Default height for the outer JFrame.
+     */
     private static final int DEFAULT_FRAME_HEIGHT = 200;
+
+    /**
+     * Default width for the outer JFrame.
+     */
     private static final int DEFAULT_FRAME_WIDTH = 200;
 
 
@@ -62,13 +142,14 @@ public class CalculatorView {
      * @return Returns JTextPane object associated with the calculator
      * view.
      */
-    public JTextPane getTextPane()
-    {
+    public JTextPane getTextPane() {
         return expressionTextPane;
     }
 
-    public CalculatorView()
-    {
+    /**
+     * Constructor for the calculator view - creates the basic Swing GUI.
+     */
+    public CalculatorView() {
         outerFrame = new JFrame("Simple Calculator");
         outerPanel = new JPanel(new GridBagLayout());
         topPanel = new JPanel();
@@ -80,14 +161,18 @@ public class CalculatorView {
         outerFrame.setVisible(true);
     }
 
-    private void setupOuterFrame()
-    {
-        outerFrame.add(outerPanel,BorderLayout.CENTER);
+    /**
+     * Sets up the outer JFrame.
+     */
+    private void setupOuterFrame() {
+        outerFrame.add(outerPanel, BorderLayout.CENTER);
         outerFrame.setSize(DEFAULT_FRAME_WIDTH, DEFAULT_FRAME_HEIGHT);
     }
 
-    private void setupOuterPanel()
-    {
+    /**
+     * Sets up the outer JPanel.
+     */
+    private void setupOuterPanel() {
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.fill = GridBagConstraints.VERTICAL;
         gridBagConstraints.gridx = 0;
@@ -99,20 +184,24 @@ public class CalculatorView {
 
     }
 
-    private void setupTopPanel()
-    {
+    /**
+     * Sets up the top panel.
+     */
+    private void setupTopPanel() {
         expressionTextPane = new JTextPane();
         expressionTextPane.setText("1+2");
         topPanel.add(expressionTextPane, BorderLayout.PAGE_START);
     }
 
-    private void setupBottomPanel()
-    {
+    /**
+     * Sets up the bottom panel.
+     */
+    private void setupBottomPanel() {
         setupButtons();
 
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
-        //temporary to line things up
+        //line things up using the gridBag swing layout
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -160,8 +249,10 @@ public class CalculatorView {
         bottomPanel.add(clearButton, gridBagConstraints);
     }
 
-    private void setupButtons()
-    {
+    /**
+     * Sets up the basic Swing GUI JButtons.
+     */
+    private void setupButtons() {
         calculatorDigitButtons = new JButton[NUM_DIGIT_BUTTONS];
         calculatorFunctionButtons = new JButton[NUM_FUNCTION_BUTTONS];
 
@@ -192,30 +283,34 @@ public class CalculatorView {
     }
 
     /**
-     * Order of buttons: {0, 1, 2, 3, 4, 5, 6, 7, 8}
-     * @return Array of JButton references to digit buttons
+     * Order of buttons: {0, 1, 2, 3, 4, 5, 6, 7, 8}.
+     * @return Array of JButton references to digit buttons.
      */
-    public JButton[] getDigitButtons()
-    {
+    public JButton[] getDigitButtons() {
         return calculatorDigitButtons;
     }
 
     /**
-     * Order of buttons: {'/', '*', '-', '.', '=', '+', '(', ')', CLR}
-     * @return Array of JButton references to function buttons
+     * Order of buttons: {'/', '*', '-', '.', '=', '+', '(', ')', CLR}.
+     * @return Array of JButton references to function buttons.
      */
-    public JButton[] getFunctionButtons()
-    {
+    public JButton[] getFunctionButtons() {
         return calculatorFunctionButtons;
     }
 
-    public int getNumDigitButtons()
-    {
+    /**
+     * Get the number of digit buttons.
+     * @return Returns the number of digit buttons as an integer.
+     */
+    public int getNumDigitButtons() {
         return NUM_DIGIT_BUTTONS;
     }
 
-    public int getNumFunctionButtons()
-    {
+    /**
+     * Get the number of function buttons.
+     * @return Returns the number of function buttons as an integer.
+     */
+    public int getNumFunctionButtons() {
         return NUM_FUNCTION_BUTTONS;
     }
 
