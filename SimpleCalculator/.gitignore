@@ -28,3 +28,6 @@ local.properties
 
 # TeXlipse plugin
 .texlipse
+
+#added doc folder since I don't want to keep committing the javadoc every time it changes
+doc/
